@@ -29,7 +29,7 @@ namespace ToccanierGregoryBlackJack
         {
             // Afficher les carte du dealeur
             Console.WriteLine("Carte du croupier : ");
-            AfficherCarte(monBlackJack.dealerCard);
+            AfficherCarte(monBlackJack.dealerCard, "Dealer");
             Console.WriteLine("");
             Console.WriteLine("Point : " + monBlackJack.dealerCardValues);
         }
@@ -37,7 +37,7 @@ namespace ToccanierGregoryBlackJack
         {
             // Afficher les carte du dealeur
             Console.WriteLine("Vos Cartes : ");
-            AfficherCarte(monBlackJack.playerCard);
+            AfficherCarte(monBlackJack.playerCard, "Player");
             Console.WriteLine("");
             Console.WriteLine("Point : " + monBlackJack.playerCardValues);
         }
@@ -46,13 +46,26 @@ namespace ToccanierGregoryBlackJack
             Console.WriteLine("Appuyez sur une touche pour continuer...");
             Console.ReadKey();
         }
+        static bool Restart()
+        {
+            Console.Write("Voulez vous refaire une partie ? y/n : ");
+            string Responce = Console.ReadLine();
+            if (Responce == "y" || Responce == "Y" || Responce == "yes" || Responce == "YES" || Responce == "Yes")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         static int RetrieveMise(int MaxBet)
         {
             bool numberisValid = false;
             int number = 0;
             while (!numberisValid)
             {
-                Console.WriteLine("    Combien vouler vous miser :");
+                    Console.Write("                                      Mise : ");
                 string _mise = Console.ReadLine();
                 if (Int32.TryParse(_mise, out number))
                 {
@@ -62,12 +75,12 @@ namespace ToccanierGregoryBlackJack
                     }
                     else
                     {
-                        Console.WriteLine("    Vous n'avez pas assez d'argent pour miser " + number);
+                        Console.WriteLine("                      Vous n'avez pas assez d'argent pour miser : " + number);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("    La mise rentrée n'est pas valide");
+                    Console.WriteLine("                             La mise rentrée n'est pas valide.");
                 }
             }
 
@@ -92,7 +105,7 @@ namespace ToccanierGregoryBlackJack
 
             return number;
         }
-        static void AfficherCarte(List<Card> _Carte)
+        static void AfficherCarte(List<Card> _Carte, string Personne)
         {
             // Déclaration du tableau
             string[] Tableau = new string[9];
@@ -101,7 +114,6 @@ namespace ToccanierGregoryBlackJack
             {
                 string symbole = _Carte[i].GetSymbole();
                 string couleur = _Carte[i].GetSuit().ToString();
-
 
                 // Dessinez le haut de la carte
                 Tableau[0] += ("┌─────────┐ ");
@@ -132,12 +144,40 @@ namespace ToccanierGregoryBlackJack
                 else { Tableau[7] += "│       " + symbole + " │ "; }
                 Tableau[8] += ("└─────────┘ ");
             }
+            if (_Carte.Count == 1)
+            {
+                // Dessinez le haut de la carte
+                Tableau[0] += ("┌─────────┐ ");
+                Tableau[1] += ("│ ♠ ─── ♥ │ ");
+                Tableau[2] += ("│ │     │ │ ");
+                Tableau[3] += ("│ │ ┌─┐ │ │ ");
+                Tableau[4] += ("│ │  ?  │ │ ");
+                Tableau[5] += ("│ │ └─┘ │ │ ");
+                Tableau[6] += ("│ │     │ │ ");
+                Tableau[7] += ("│ ♦ ─── ♣ │ ");
+                Tableau[8] += ("└─────────┘ ");
+            }
             // Boucle pour afficher le tableau
             for (int i = 0; i < 9; i++)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                if (Personne == "Dealer") { Console.ForegroundColor = ConsoleColor.Yellow; }
+                else { Console.ForegroundColor = ConsoleColor.Green; }
+                
                 Console.WriteLine(Tableau[i]);
                 Console.ResetColor();
+            }
+        }
+        static void SaveGame(BlackJack monBlackJack, string Gagnant)
+        {
+            // Définissez le chemin et le nom du fichier
+            string path = @"../Log.txt";
+            DateTime currentDate = DateTime.Now;
+
+            // Écrivez dans le fichier
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                // Écrivez la ligne de texte
+                writer.WriteLine("Date : " + currentDate + ", Gagnant : " + Gagnant);
             }
         }
         static void Main(string[] args)
@@ -153,13 +193,16 @@ namespace ToccanierGregoryBlackJack
             {
                 #region Miser
                 // Mise
-                Console.WriteLine("***********************************************");
-                Console.WriteLine("    Votre argent : " + monBlackJack.playerMoney + "$");
+                DisplayHeader(monBlackJack);
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("                              *********** Misez ***********                               ");
                 int number = RetrieveMise(monBlackJack.playerMoney);
                 monBlackJack.Bet(number);
-                Console.WriteLine("    Argent dans le pot : " + monBlackJack.potMoney + "$");
-                Console.WriteLine("    Argent restant : " + monBlackJack.playerMoney + "$");
-                Console.WriteLine("***********************************************");
+                Console.WriteLine("                                Argent dans le pot : " + monBlackJack.potMoney + " $");
+                Console.WriteLine("                                  Argent restant : " + monBlackJack.playerMoney + " $");
+                Console.WriteLine("");
+                Console.WriteLine("******************************************************************************************");
                 #endregion
 
                 Pause();
@@ -204,6 +247,13 @@ namespace ToccanierGregoryBlackJack
                         case 1:
                             // Affichage du headers
                             DisplayHeader(monBlackJack);
+                            // Afficher les carte du croupier
+                            DisplayDealerCard(monBlackJack);
+                            Console.WriteLine("******************************************************************************************");
+                            // Afficher les carte du joueur
+                            DisplayPlayerCard(monBlackJack);
+                            Console.WriteLine("******************************************************************************************");
+
                             break;
                         case 2:
                             // Donne une carte au Joueur
@@ -239,8 +289,7 @@ namespace ToccanierGregoryBlackJack
                 }
                 if (monBlackJack.playerCardValues > 21)
                 {
-                    Console.WriteLine("Vous avez sauté !!!");
-                    monBlackJack.potMoney = 0;
+                    Pause();
                 }
                 Console.WriteLine("***********************************************");
                 #endregion
@@ -277,12 +326,13 @@ namespace ToccanierGregoryBlackJack
                 // Affichage du headers
                 DisplayHeader(monBlackJack);
                 // Affichage d'une version simplifiée du croupier
-                Console.WriteLine("*********** Récapitulatif de la partie ***********");
                 Console.WriteLine("");
-                Console.WriteLine("Croupier : " + monBlackJack.dealerCardValues + " points");
+                Console.WriteLine("                    *********** Récapitulatif de la partie ***********                    ");
+                Console.WriteLine("");
+                Console.WriteLine("                                   Croupier : " + monBlackJack.dealerCardValues + " points");
                 Console.WriteLine("");
                 // Affichage d'une version simplifiée du Joueur
-                Console.WriteLine("Joueurs : " + monBlackJack.playerCardValues + " points");
+                Console.WriteLine("                                    Joueur : " + monBlackJack.playerCardValues + " points");
                 Console.WriteLine("");
 
                 int PlayerValue = monBlackJack.playerCardValues;
@@ -290,33 +340,47 @@ namespace ToccanierGregoryBlackJack
 
                 if (PlayerValue > 21)
                 {
-                    Console.WriteLine("Perdu");
+                    Console.WriteLine("                         *********** Vous avez sauté. ***********");
+                    SaveGame(monBlackJack, "Croupier");
                 }
-                else if (DealerValue > 21 && PlayerValue < 21)
+                else if (DealerValue > 21 && PlayerValue <= 21)
                 {
-                    Console.WriteLine("Gagné");
+                    ;
+                    Console.WriteLine("                    *********** Vous avez gagné la partie. ***********");
                     monBlackJack.playerMoney += monBlackJack.potMoney * 2;
+                    SaveGame(monBlackJack, "Joueur");
                 }
                 else if (DealerValue == PlayerValue && PlayerValue < 21)
                 {
-                    Console.WriteLine("Egalité");
+                    Console.WriteLine("                             *********** Egalité. ***********");
                     monBlackJack.playerMoney += monBlackJack.potMoney;
+                    SaveGame(monBlackJack, "Egalité");
                 }
                 else if (DealerValue > PlayerValue)
                 {
-                    Console.WriteLine("Perdu");
+                    Console.WriteLine("                    *********** Vous avez perdu la partie. ***********");
+                    SaveGame(monBlackJack, "Croupier");
                 }
                 else if (DealerValue < PlayerValue)
                 {
-                    Console.WriteLine("Gagné");
+                    Console.WriteLine("                    *********** Vous avez gagné la partie. ***********");
                     monBlackJack.playerMoney += monBlackJack.potMoney * 2;
+                    SaveGame(monBlackJack, "Joueur");
                 }
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("");
                 #endregion
+                // Demande si on veux refaire une partie
+                Retry = Restart();
 
-                Pause();
-
-                monBlackJack.RestartGame();
-                Console.Clear();
+                if (Retry)
+                {
+                    // Redemarre la partie
+                    monBlackJack.RestartGame();
+                    // Clear la console
+                    Console.Clear();
+                }
             }
         }
     }
