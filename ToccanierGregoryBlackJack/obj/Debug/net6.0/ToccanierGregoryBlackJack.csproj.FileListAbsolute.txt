@@ -1,0 +1,15 @@
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\bin\Debug\net6.0\ToccanierGregoryBlackJack.exe
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\bin\Debug\net6.0\ToccanierGregoryBlackJack.deps.json
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\bin\Debug\net6.0\ToccanierGregoryBlackJack.runtimeconfig.json
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\bin\Debug\net6.0\ToccanierGregoryBlackJack.dll
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\bin\Debug\net6.0\ToccanierGregoryBlackJack.pdb
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.csproj.AssemblyReference.cache
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.AssemblyInfoInputs.cache
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.AssemblyInfo.cs
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.csproj.CoreCompileInputs.cache
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.dll
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\refint\ToccanierGregoryBlackJack.dll
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.pdb
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ToccanierGregoryBlackJack.genruntimeconfig.cache
+C:\Users\gregt\Documents\CoursGitHub\ToccanierGregoryBlackJack\ToccanierGregoryBlackJack\obj\Debug\net6.0\ref\ToccanierGregoryBlackJack.dll
