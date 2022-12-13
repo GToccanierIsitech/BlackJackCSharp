@@ -6,6 +6,44 @@ namespace ToccanierGregoryBlackJack
 {
     class Program
     {
+        static void DisplayMainMenu()
+        {
+
+            Console.WriteLine("*************************************************************************************************************************");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*    Le blackjack est un jeu de cartes qui se joue avec un jeu de 52 cartes. Le but du jeu est de battre le croupier    *");
+            Console.WriteLine("*                    en obtenant un total de points supérieur à celui du croupier sans dépasser 21.                     *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*     Voici les règles générales du blackjack :                                                                         *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        1 -  Tous les joueurs doivent d'abord miser avant que les cartes ne soient distribuées.                        *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        2 - Le croupier distribue ensuite une carte face visible à chacun des joueurs et une carte face visible        *");
+            Console.WriteLine("*            pour lui-même.                                                                                             *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        3 - Le croupier distribue ensuite une deuxième carte face visible à chacun des joueurs et une carte face       *");
+            Console.WriteLine("*            cachée pour lui-même.                                                                                      *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        4.  Chaque joueur regarde ses cartes et peut choisir d'« tirer » une carte supplémentaire (appelée « hit »)    *");
+            Console.WriteLine("*            pour essayer d'obtenir un total de points plus élevé sans dépasser 21, ou de « rester » avec les cartes    *");
+            Console.WriteLine("*            qu'il a déjà.                                                                                              *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        5 - Une fois que tous les joueurs ont terminé leur tour, le croupier montre sa carte cachée et tire des        *");
+            Console.WriteLine("*            cartes supplémentaires jusqu'à ce qu'il atteigne un total de 17 points ou plus. Si le croupier dépasse     *");
+            Console.WriteLine("*            21 points, il « perd » et tous les joueurs qui n'ont pas déjà perdu gagnent.                               *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*        6.  Si le croupier n'a pas perdu, les joueurs qui ont un total supérieur à celui du croupier sans dépasser     *");
+            Console.WriteLine("*            21 points gagnent, tandis que ceux qui ont un total inférieur perdent. Si le total des joueurs est égal    *");
+            Console.WriteLine("*            à celui du croupier, cela s'appelle un « match nul » et les joueurs conservent leurs mises.                *");
+            Console.WriteLine("*                                                                                                                       *");
+            Console.WriteLine("*************************************************************************************************************************");
+
+            Pause();
+            Console.Clear();
+
+        }
         static void DisplayHeader(BlackJack monBlackJack)
         {
             string _money = "";
@@ -16,6 +54,7 @@ namespace ToccanierGregoryBlackJack
             else if (monBlackJack.playerMoney.ToString().Length == 3) { _money = "00" + monBlackJack.playerMoney; }
             else if (monBlackJack.playerMoney.ToString().Length == 4) { _money = "0" + monBlackJack.playerMoney; }
             else if (monBlackJack.playerMoney.ToString().Length == 5) { _money = "" + monBlackJack.playerMoney; }
+
             // Detection de la taille de monBlackJack.potMoney
             if (monBlackJack.potMoney.ToString().Length == 1) { _pot = "000" + monBlackJack.potMoney; }
             else if (monBlackJack.potMoney.ToString().Length == 2) { _pot = "00" + monBlackJack.potMoney; }
@@ -182,6 +221,7 @@ namespace ToccanierGregoryBlackJack
         }
         static void Main(string[] args)
         {
+            DisplayMainMenu();
             // Création de la partie
             BlackJack monBlackJack = new BlackJack();
             // Lancement de la partie et création du paquet de 52 Cartes

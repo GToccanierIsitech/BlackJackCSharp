@@ -121,6 +121,7 @@ namespace ToccanierGregoryBlackJack
                 if (Personne == "Dealer") { 
                     dealerCard.Add(Carte);
                     dealerCardValues += Carte.GetValues();
+
                 }
                 else if (Personne == "Player") { 
                     playerCard.Add(Carte);

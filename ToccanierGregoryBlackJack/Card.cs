@@ -39,13 +39,14 @@ namespace ToccanierGregoryBlackJack
     {
         private Names Name;
         private Suits Suit;
+        public int Value;
 
         // Constructeur
         public Card(Names name, Suits suit)
         {
             this.Name = name;
             this.Suit = suit;
-
+            this.Value = SetValues();
         }
         // Récupére le nom de la carte
         public Names GetName()
@@ -59,7 +60,11 @@ namespace ToccanierGregoryBlackJack
         }
         // Récupère la valeur de la carte
         public int GetValues()
-        {   
+        {
+            return this.Value;
+        }
+        public int SetValues()
+        {
             switch (Name)
             {
                 case Names.Ace:
